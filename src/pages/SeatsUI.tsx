@@ -94,28 +94,30 @@ const SeatsUI: React.FC<SeatsUIProps> = ({ isAdminView = false }) => {
 
   return (
     <div className="container mx-auto p-4 sm:p-6">
-      {/* Bus Selection */}
-      <Card className="max-w-4xl mx-auto mb-6">
-        <div className="p-4 sm:p-6">
-          <div className="max-w-md mx-auto">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Select Bus
-            </label>
-            <Select value={selectedBus} onValueChange={handleBusSelect}>
-              <SelectTrigger className="w-full h-12">
-                <SelectValue placeholder="Choose a bus" />
-              </SelectTrigger>
-              <SelectContent>
-                {buses.map((bus) => (
-                  <SelectItem key={bus} value={bus}>
-                    Bus {bus}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+      {/* Bus Selection - Only show if NOT in admin view */}
+      {!isAdminView && (
+        <Card className="max-w-4xl mx-auto mb-6">
+          <div className="p-4 sm:p-6">
+            <div className="max-w-md mx-auto">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Select Bus
+              </label>
+              <Select value={selectedBus} onValueChange={handleBusSelect}>
+                <SelectTrigger className="w-full h-12">
+                  <SelectValue placeholder="Choose a bus" />
+                </SelectTrigger>
+                <SelectContent>
+                  {buses.map((bus) => (
+                    <SelectItem key={bus} value={bus}>
+                      Bus {bus}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
-        </div>
-      </Card>
+        </Card>
+      )}
 
       {/* Seats Layout */}
       <Card className="max-w-4xl mx-auto bg-gradient-to-b from-white to-gray-100 shadow-xl rounded-xl overflow-hidden">
@@ -187,7 +189,7 @@ const SeatsUI: React.FC<SeatsUIProps> = ({ isAdminView = false }) => {
         </div>
       </Card>
 
-      {/* Seat Details Dialog */}
+      {/* Seat Details Dialog - Only show in admin view */}
       {isAdminView && (
         <Dialog
           open={!!selectedSeat}
