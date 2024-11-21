@@ -1,11 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Card } from "@/components/ui/card";
 import { Bus, UserCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { showToast } from "../utils/notifications";
 import { RootState } from "../store/store";
+import { setSelectedBus } from "../features/booking/bookingSlice";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import {
   Dialog,
   DialogContent,
@@ -19,12 +27,17 @@ interface SeatsUIProps {
 
 const SeatsUI: React.FC<SeatsUIProps> = ({ isAdminView = false }) => {
   const navigate = useNavigate();
-  const { seats, selectedBus } = useSelector(
+  const dispatch = useDispatch();
+  const { seats, selectedBus, buses } = useSelector(
     (state: RootState) => state.booking
   );
   const [selectedSeat, setSelectedSeat] = React.useState<string | null>(null);
 
   const currentBusSeats = seats[selectedBus] || {};
+
+  const handleBusSelect = (busId: string) => {
+    dispatch(setSelectedBus(busId));
+  };
 
   const handleSeatClick = (seatId: string, isBooked: boolean) => {
     if (isAdminView) {
@@ -81,6 +94,30 @@ const SeatsUI: React.FC<SeatsUIProps> = ({ isAdminView = false }) => {
 
   return (
     <div className="container mx-auto p-4 sm:p-6">
+      {/* Bus Selection */}
+      <Card className="max-w-4xl mx-auto mb-6">
+        <div className="p-4 sm:p-6">
+          <div className="max-w-md mx-auto">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Select Bus
+            </label>
+            <Select value={selectedBus} onValueChange={handleBusSelect}>
+              <SelectTrigger className="w-full h-12">
+                <SelectValue placeholder="Choose a bus" />
+              </SelectTrigger>
+              <SelectContent>
+                {buses.map((bus) => (
+                  <SelectItem key={bus} value={bus}>
+                    Bus {bus}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      </Card>
+
+      {/* Seats Layout */}
       <Card className="max-w-4xl mx-auto bg-gradient-to-b from-white to-gray-100 shadow-xl rounded-xl overflow-hidden">
         <div className="p-4 sm:p-8">
           <div className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-10 flex items-center justify-center gap-2 sm:gap-3 text-blue-600">
@@ -150,6 +187,7 @@ const SeatsUI: React.FC<SeatsUIProps> = ({ isAdminView = false }) => {
         </div>
       </Card>
 
+      {/* Seat Details Dialog */}
       {isAdminView && (
         <Dialog
           open={!!selectedSeat}
