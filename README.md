@@ -1,50 +1,110 @@
-# React + TypeScript + Vite
+# Bus Seat Booking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern bus seat booking system built with React, Redux Toolkit, TypeScript, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Interactive seat selection interface
+- Admin panel for managing bookings
+- Real-time seat availability status
+- Booking management system
+- Responsive design
+- Local storage persistence
+- Bus selection system
+- Different views for admin and users
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React 18
+- TypeScript
+- Redux Toolkit
+- Tailwind CSS
+- Shadcn/ui Components
+- React Router DOM
+- Lucide React Icons
 
-- Configure the top-level `parserOptions` property like this:
+## Prerequisites
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Before you begin, ensure you have the following installed:
+- Node.js (v14.0.0 or later)
+- npm (v6.0.0 or later)
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/bus-booking-system.git
+cd bus-booking-system
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Install dependencies:
+```bash
+npm install
 ```
+
+3. Install required packages:
+```bash
+npm install @radix-ui/react-dialog @radix-ui/react-select @radix-ui/react-slot
+npm install lucide-react
+npm install class-variance-authority clsx tailwind-merge
+npm install react-toastify sweetalert2
+```
+
+4. Set up Tailwind CSS:
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+## Running the Application
+
+1. Start the development server:
+```bash
+npm run dev
+```
+
+2. Open your browser and navigate to:
+```
+https://spiffy-cranachan-224d2c.netlify.app/
+
+## Features Details
+
+### User Features
+- View available/booked seats
+- Select and book seats
+- View booking details
+- Interactive seat layout
+
+### Admin Features
+- View all bookings
+- Check seat status
+- View booking details
+- Monitor seat availability
+- View statistics per bus
+
+## State Management
+
+The application uses Redux Toolkit for state management with the following features:
+- Seat booking management
+- Bus selection
+- Booking information storage
+- Local storage persistence
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
+
+## Acknowledgments
+
+- Shadcn/ui for the component library
+- Tailwind CSS for styling
+- Redux team for Redux Toolkit
+- React team for React and related libraries
