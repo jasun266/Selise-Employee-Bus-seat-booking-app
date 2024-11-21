@@ -65,7 +65,7 @@ npm run dev
 
 2. Open your browser and navigate to:
 ```
-https://spiffy-cranachan-224d2c.netlify.app/
+https://admirable-gingersnap-b6bf40.netlify.app/
 
 ## Features Details
 
