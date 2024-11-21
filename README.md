@@ -65,7 +65,7 @@ npm run dev
 
 2. Open your browser and navigate to:
 ```
-http:https://astonishing-boba-7b0605.netlify.app/
+https://astonishing-boba-7b0605.netlify.app/
 
 ## Features Details
 
